@@ -1,0 +1,35 @@
+// Función para simular una ronda del torneo
+function simularRonda(equipos, ronda) {
+  console.log(`${ronda}:`);
+  let ganadores = {};
+  for (let i = 1; i <= 4; i++) {
+    const equipoA = `Equipo${2 * i - 1}`;
+    const equipoB = `Equipo${2 * i}`;
+    const ganador = prompt(`${equipos[equipoA]} - ${equipos[equipoB]}:`);
+    ganadores[`Equipo${i}`] = equipos[`Equipo${ganador === "a" ? 2 * i - 1 : 2 * i}`];
+  }
+  return ganadores;
+}
+
+// Función principal para ejecutar el torneo
+function ejecutarTorneo() {
+  const equipos = {};
+  const rondas = ["Cuartos", "Semifinales", "Finales"];
+
+  // Ingresar nombres de equipos
+  for (let i = 1; i <= 8; i++) {
+    equipos[`Equipo${i}`] = prompt(`Nombre del equipo ${i}:`);
+  }
+
+  // Simular cada ronda del torneo
+  let ganadores = equipos;
+  for (let ronda of rondas) {
+    ganadores = simularRonda(ganadores, ronda);
+  }
+
+  // Anunciar al campeón
+  console.log(`El campeón es: ${ganadores["Equipo1"]}`);
+}
+
+// Ejecutar el torneo al cargar la página (en un entorno con GUI, como un navegador)
+ejecutarTorneo();
